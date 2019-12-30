@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
             Text('Question2'),
             RaisedButton(
               child: Text('Answer2'),
-              onPressed: answerQuestion,
+              onPressed: () => print("Answer 2 chosen!"),
             ),
           ],
         ),
