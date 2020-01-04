@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import './quiz.dart'; //import custom question widget.
 import './results.dart';
 
-
 void main() => runApp(MyApp());
 
 class MyApp extends StatefulWidget {
@@ -16,30 +15,56 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   //PROPERTIES
-  var _questionIndex = 0;
+
   final _questions = const [
     //create Map()s of associated questions and their possible answers.
     {
       'questionText': "What's your favorite color?",
-      'answersText': ["Black", "Red", "Green", "White"]
+      'answersText': [
+        {'text': "Black", 'score': 0},
+        {'text': "Red", 'score': 3},
+        {'text': "Green", 'score': 7},
+        {'text': "White", 'score': 10}
+      ]
     },
     {
       'questionText': "What's your favorite animal?",
-      'answersText': ["Bear", "Rhino", "Goose", "Whale"]
+      'answersText': [
+        {'text': "Bear", 'score': 0},
+        {'text': "Rhino", 'score': 3},
+        {'text': "Goose", 'score': 7},
+        {'text': "Whale", 'score': 10}
+      ]
     },
     {
       'questionText': "What's your favorite food?",
-      'answersText': ["Baklava", "Rice", "Gyro", "Worms"]
+      'answersText': [
+        {'text': "Baklava", 'score': 0},
+        {'text': "Rice", 'score': 3},
+        {'text': "Gyro", 'score': 7},
+        {'text': "Worms", 'score': 10}
+      ]
     },
   ];
 
+  var _questionIndex = 0;
+  var _totalScore = 0;
+
   //METHODS
-  void _answerQuestion() {
+  void _answerQuestion(int score) {
+    _totalScore += score;
     if (_questionIndex < _questions.length) {
       setState(() {
         _questionIndex++;
       });
     }
+  }
+
+  void _resetQuiz() {
+    setState(() {
+      _totalScore = 0;
+      _questionIndex = 0;
+    });
   }
 
   //WIDGET TREE
@@ -53,8 +78,7 @@ class _MyAppState extends State<MyApp> {
         ),
         body: _questionIndex < _questions.length
             ? Quiz(_answerQuestion, _questions, _questionIndex)
-            : Results()
-        ,
+            : Results(_totalScore, _resetQuiz),
       ),
     );
   }
