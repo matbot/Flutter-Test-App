@@ -1,14 +1,13 @@
 //PACKAGES
 import 'package:flutter/material.dart';
 //LIBRARIES
-import './question.dart';
+import './question.dart';   //question widget.
 
 void main() => runApp(MyApp());
 
 class MyApp extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    // TODO: implement createState
     return _MyAppState();
   }
 }
