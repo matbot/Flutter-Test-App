@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class Question extends StatelessWidget {
-  final String questionText;  //make the argument passed to the constructor const.
+  final String
+      questionText; //make the argument passed to the constructor const.
 
   Question(this.questionText);
 

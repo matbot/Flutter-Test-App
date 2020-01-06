@@ -22,10 +22,12 @@ class Quiz extends StatelessWidget {
       children: [
         Question(questions[questionIndex]['questionText']),
         // ignore: sdk_version_ui_as_code
-        ...(questions[questionIndex]['answersText'] as List<Map<String, Object>>)
+        ...(questions[questionIndex]['answersText']
+                as List<Map<String, Object>>)
             .map((answersText) {
           //... is the spread operator to turn the list into individual widgets.
-          return Answer(() => answerQuestion(answersText['score']), answersText['text']);
+          return Answer(
+              () => answerQuestion(answersText['score']), answersText['text']);
         }).toList(),
       ],
     );
